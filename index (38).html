@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>YouTube.com Clone</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+      p {
+        font-family: Roboto, Arial;
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+      body {
+        padding-top: 80px;
+        padding-left: 95px;
+        padding-right: 25px;
+        background-color: rgb(248,248,248);
+      }
+      .side-bar{
+        position: fixed;
+        left: 0;
+        top: 57px;
+        bottom: 0;
+        width: 80px;
+        background-color: #FFFFFF;
+        z-index: 1500;
+        margin-right: 10px;
+        padding-top: 10px;
+        
+      }
+      .side-bar-link{
+        height: 74px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }
+      .side-bar-link p{
+        font-family: Roboto;
+        font-size: 10px;
+        margin-top: 5px;
+        margin-right: 0;
+        
+      }
+      .side-bar-link:hover{
+        background-color: lightgray;
+      }
+      .header{
+        height: 58px;
+        justify-content: space-between;
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 10px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background-color: white;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+        border-bottom-color: rgb(228,228,228);
+      }
+      .left-section{
+        width: 150px;
+        background-color: line-blue;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        align-content: justify-content;
+        flex-shrink: 0;
+      }
+      .menu-icon{
+        height: 24px;
+        margin-right: 20px;
+        margin-left: 27px;
+       
+      }
+      .youtube-logo{
+        height: 10px;
+        margin-left: 75px;
+      }
+      .middle-section{
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+        margin-left: 75px;
+        margin-right: 33px;
+        align-items: center;
+        max-width: 500px;
+      }
+      .search-bar{
+        flex: 1;
+        padding-left: 10px;
+        font-size: 16px;
+        border-width: 1px;
+        border-style: solid;
+        border-color: rgb(192,192,192);
+        border-radius: 2px;
+        width: 0;
+        height: 36px;
+      }
+      .search-icon{
+        height: 25px;
+      }
+      .search-button{
+        height: 40px;
+        width: 65px;
+        background-color: rgb(240,240,240);
+        border-width: 1px;
+        border-style: solid;
+        border-color: rgb(192, 192, 192);
+        margin-right: 8px;
+        margin-left: -1px;
+        
+      }
+      .voice-search-button {
+        height: 40px;
+        width: 40px;
+        border-radius: 20px;
+        border: none;
+        background-color: rgb(245, 245, 245);
+      }
+      .voice-search-icon{
+        height: 24px;
+      }
+      .right-section{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        flex-shrink: 0;
+        margin-right: 20px;
+        
+      }
+      .uplode-icon{
+        height: 24px;
+        padding-left: 6px;
+        padding-right: 6px;
+        margin-right: 10px;
+      } 
+      .apps-icon{
+        height: 24px;
+        padding-left: 6px;
+        padding-right: 6px;
+        margin-right: 10px;
+      }
+      .notification-icon{
+        height: 24px;
+        padding-left: 6px;
+        padding-right: 6px;
+        margin-right: 10px;
+      }
+      .material-symbols-outlined{
+       
+        padding-left: 6px;
+        padding-right: 6px;
+        margin-right: 10px;
+      }
+      
+      .thumbnail {
+        width: 100%;
+      }
+
+      .search-bar {
+        display: block;
+      }
+
+      .video-title {
+        margin-top: 0;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 20px;
+        margin-bottom: 12px;
+      }
+
+      .video-info-grid {
+        display: grid;
+        grid-template-columns: 50px 1fr;
+      }
+
+      .profile-picture {
+        width: 40px;
+        border-radius: 50px;
+      }
+
+      .thumbnail-row {
+        margin-bottom: 12px;
+        position: relative;
+      }
+      .video-time {
+        background-color: black;
+        color: white;
+        position: absolute;
+        bottom: 8px;
+        right: 5px;
+        font-family: Roboto ,Arial;
+        font-size: 12px;
+        font-weight: 500;
+        padding-bottom: 4px;
+        padding-left: 4px;
+        padding-top: 4px;
+        padding-right: 4px;
+        border-radius: 4px;
+      }
+
+      .video-author,
+      .video-stats {
+        font-size: 12px;
+        color: rgb(96, 96, 96);
+      }
+
+      .video-author {
+        margin-bottom: 4px;
+      }
+
+      .video-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: 16px;
+        row-gap: 40px;
+      }
+      @media (max-width: 750px){
+        .video-grid{
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (max-width: 751px) and (min-width: 999px) {
+        .video-grid{
+          grid-template-columns: 1fr 1fr 1fr;
+        }
+      }
+      @media (min-width: 1000px){
+        .video-grid{
+          grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+   
+    <div class="header">
+      <div class="left-section">
+        <img class="menu-icon" src="https://raw.githubusercontent.com/SuperSimpleDev/html-css-course-2022/f16e92873fa7de49c7d0ac332b215ca66f08ce10/2-copy-of-code/lesson-13/icons/hamburger-menu.svg" alt="" />
+        <img class="youtube-icon" src="https://raw.githubusercontent.com/SuperSimpleDev/html-css-course-2022/f16e92873fa7de49c7d0ac332b215ca66f08ce10/2-copy-of-code/lesson-13/icons/youtube-logo.svg">
+      </div>
+      <div class="middle-section">
+        <input class="search-bar" type="text" placeholder="Search">
+        <button class="search-button"><img class="search-icon" src="https://raw.githubusercontent.com/SuperSimpleDev/html-css-course-2022/f16e92873fa7de49c7d0ac332b215ca66f08ce10/2-copy-of-code/lesson-13/icons/search.svg"></button>
+        <button class="voice-search-button"><img class="voice-search-icon" src="https://raw.githubusercontent.com/SuperSimpleDev/html-css-course-2022/f16e92873fa7de49c7d0ac332b215ca66f08ce10/2-copy-of-code/lesson-13/icons/voice-search-icon.svg"></button>
+      </div>
+      <div class="right-section">
+        <img class="uplode-icon" src="https://raw.githubusercontent.com/SuperSimpleDev/html-css-course-2022/f16e92873fa7de49c7d0ac332b215ca66f08ce10/2-copy-of-code/lesson-13/icons/upload.svg">
+        <img class="apps-icon" src="https://raw.githubusercontent.com/SuperSimpleDev/html-css-course-2022/f16e92873fa7de49c7d0ac332b215ca66f08ce10/2-copy-of-code/lesson-13/icons/youtube-apps.svg">
+        <img class="notification-icon" src="https://raw.githubusercontent.com/SuperSimpleDev/html-css-course-2022/f16e92873fa7de49c7d0ac332b215ca66f08ce10/2-copy-of-code/lesson-13/icons/notifications.svg">
+        <img class="user-icon" src="">
+        <span class="material-symbols-outlined">
+          person
+        </span>
+      </div>
+    </div>
+    <div class="side-bar">
+     <div class="side-bar-link">
+      <span class="material-symbols-outlined">
+      home
+      </span>
+      <p>Home</p>
+     </div>
+     <div class="side-bar-link">
+      <span class="material-symbols-outlined">
+      explore
+      </span>
+      <p>Explore</p>
+     </div>
+     <div class="side-bar-link">
+      <span class="material-symbols-outlined">
+      subscriptions
+      </span>
+      <p>Subscriptions</p>
+     </div>
+     <div class="side-bar-link">
+      <span class="material-symbols-outlined">
+      youtube_activity
+      </span>
+      <p>Youtube Plus</p>
+     </div>
+     <div class="side-bar-link">
+      <span class="material-symbols-outlined">
+      video_library
+      </span>
+      <p>Library</p>
+     </div>
+    </div>
+    <div class="video-grid">
+      <div class="video-preview">
+        <div class="thumbnail-row">
+          <a href="https://www.youtube.com/watch?v=n2RNcPRtAiY">
+             <img class="thumbnail" src="https://supersimple.dev/public/img/exercises/youtube/thumbnails/thumbnail-1.webp">
+          </a>
+         
+          <div class="video-time">
+            14:20
+          </div>
+        </div>
+        <div class="video-info-grid">
+          <div class="channel-picture">
+            <img class="profile-picture" src="https://supersimple.dev/public/img/exercises/youtube/channel-profile-pics/channel-1.jpeg">
+          </div>
+          <div class="video-info">
+            <p class="video-title">
+              Talking Tech and AI with Google CEO Sundar Pichai!
+            </p>
+            <p class="video-author">
+              Marques Brownlee
+            </p>
+            <p class="video-stats">
+              3.4M views &#183; 6 months ago
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-preview">
+        <div class="thumbnail-row">
+          <a href="https://www.youtube.com/watch?v=-PiB2Xd3P94&ab_channel=JesseMason">
+            <img class="thumbnail" src="https://i.ytimg.com/vi/-PiB2Xd3P94/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDg326NPb9eKMjcbYEFOXKVJ6o2gA">
+          </a>
+          
+          <div class="video-time">
+            8:22
+          </div>
+        </div>
+        <div class="video-info-grid">
+          <div class="channel-picture">
+            <a href="https://www.youtube.com/watch?v=-PiB2Xd3P94&ab_channel=JesseMason">
+              <img class="profile-picture" src="https://yt3.ggpht.com/ytc/APkrFKbN8Kape8UDMNyO3QTpmy2Y7Oq-KkNyyTo7TXbRbg=s48-c-k-c0x00ffffff-no-rj">
+            </a>
+          </div>
+          <div class="video-info">
+            <p class="video-title">
+              How to Solve Any Series and Parallel Circuit Problem
+            </p>
+            <p class="video-author">
+              Jesse Mason
+            </p>
+            <p class="video-stats">
+              4.5M views &#183; 8 years ago
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-preview">
+        <div class="thumbnail-row">
+          <a href="https://www.youtube.com/watch?v=zxXXC-vqWng&t=1s&ab_channel=SuperSimpleDev">
+            <img class="thumbnail" src="https://i.ytimg.com/vi/zxXXC-vqWng/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCy_Xsbd9yX05Vqztpl9IFIFk0xvA">
+          </a>
+          
+          <div class="video-time">
+            8:22
+          </div>
+        </div>
+        <div class="video-info-grid">
+          <div class="channel-picture">
+            <img class="profile-picture" src="https://yt3.ggpht.com/ytc/APkrFKaEovkjwOFQ3HMD8S5KFvjayVFtNBn2ofFrA9Xw=s48-c-k-c0x00ffffff-no-rj">
+          </div>
+          <div class="video-info">
+            <p class="video-title">
+              Wordpress vs coding - why devs SHOULD learn Wordpress
+            </p>
+            <p class="video-author">
+              SuperSimpleDev
+            </p>
+            <p class="video-stats">
+              214k views &#183; 2 years ago
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="video-preview">
+        <div class="thumbnail-row">
+          <a href="https://www.youtube.com/watch?v=HE9BWs5VfYA&t=57s&ab_channel=Mad4Motors">
+            <img class="thumbnail" src="https://i.ytimg.com/vi/HE9BWs5VfYA/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDH8F5dTLZblQii-suhaVqDZhAFQQ">
+          </a>
+          <img class="thumbnail" src="">
+          <div class="video-time">
+            23:03
+          </div>
+        </div>
+        <div class="video-info-grid">
+          <div class="channel-picture">
+            <img class="profile-picture" src="https://yt3.ggpht.com/ytc/AOPolaR7ZowQVqoZmkHjdA-wqu5G_afTJhWPJHsJS8olQg=s68-c-k-c0x00ffffff-no-rj">
+          </div>
+          <div class="video-info">
+            <p class="video-title">
+              Restoration of a Rare Honda Civic TYPE R
+            </p>
+            <p class="video-author">
+              Mad4Motors
+            </p>
+            <p class="video-stats">
+              13M views &#183; 1 year ago
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="video-preview">
+        <div class="thumbnail-row">
+          <a href="https://www.youtube.com/watch?v=9iMGFqMmUFs">
+            <img class="thumbnail" src="https://supersimple.dev/public/img/exercises/youtube/thumbnails/thumbnail-12.webp">  
+          </a>
+          <div class="video-time">
+            11:52
+          </div>
+        </div>
+        <div class="video-info-grid">
+          <div class="channel-picture">
+             <img class="profile-picture" src="https://supersimple.dev/public/img/exercises/youtube/channel-profile-pics/channel-12.jpeg">
+          </div>
+          <div class="video-info">
+            <p class="video-title">
+              What would happen if you didn’t drink water? - Mia Nacamulli
+            </p>
+            <p class="video-author">
+              TED-ED
+            </p>
+            <p class="video-stats">
+              12M views &#183; 5 years ago
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="video-preview">
+        <div class="thumbnail-row">
+          <a href="https://www.youtube.com/watch?v=094y1Z2wpJg">
+            <img class="thumbnail" src="https://supersimple.dev/public/img/exercises/youtube/thumbnails/thumbnail-4.webp">
+          </a>
+          
+          <div class="video-time">
+            22:09
+          </div>
+        </div>
+        <div class="video-info-grid">
+          <div class="channel-picture">
+            <img class="profile-picture" src="https://supersimple.dev/public/img/exercises/youtube/channel-profile-pics/channel-4.jpeg">
+          </div>
+          <div class="video-info">
+            <p class="video-title">
+              The Simplest Math Problem No One Can Solve - Collatz Conjecture
+            </p>
+            <p class="video-author">
+              Veritasium
+            </p>
+            <p class="video-stats">
+              18M views &#183; 4 months ago
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="video-preview">
+        <div class="thumbnail-row">
+          <a href="https://www.youtube.com/watch?v=G2fqAlgmoPo&ab_channel=GoogleCloudTech">
+          <img class="thumbnail" src="https://i.ytimg.com/vi/G2fqAlgmoPo/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAPoWh8EArVGLsNCNK45kYtk9vfew">
+          </a>
+          
+          <div class="video-time">
+            22:07
+          </div>
+        </div>
+        <div class="video-info-grid">
+          <div class="channel-picture">
+            
+              <img class="profile-picture" src="https://yt3.ggpht.com/NRPa1hVVZRkqv8R5z3B1nkXBZf7BmCf_cRHt889l8fcShho-s_kZzhdhyzyeo1Jgk8lJ4MHT=s68-c-k-c0x00ffffff-no-rj">
+            
+          </div>
+          <div class="video-info">
+            <p class="video-title">
+              Introduction to Generative AI
+            </p>
+            <p class="video-author">
+              Google Cloud Tech
+
+            </p>
+            <p class="video-stats">
+              925k views &#183; 4 months ago
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="video-preview">
+        <div class="thumbnail-row">
+          <a href="https://www.youtube.com/watch?v=zTDgziJC-q8">
+            <img class="thumbnail" src="https://i.ytimg.com/vi/zTDgziJC-q8/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLD_k9dCoGLYCLLrIjw3un49MivXng">
+          </a>
+          <div class="video-time">
+            22:07
+          </div>
+        </div>
+        <div class="video-info-grid">
+          <div class="channel-picture">
+            <a href="https://www.youtube.com/watch?v=G2fqAlgmoPo&ab_channel=GoogleCloudTech">
+              <img class="profile-picture" src="https://yt3.ggpht.com/ytc/APkrFKZPk56qMdJrXKAnarx2GwJyfqgA47ewsM-Q6E13Rg=s48-c-k-c0x00ffffff-no-rj">
+            </a>
+          </div>
+          <div class="video-info">
+            <p class="video-title">
+              Thevenin's Theorem - Circuit Analysis
+            </p>
+            <p class="video-author">
+              The Organic Chemistry Tutor
+            </p>
+            <p class="video-stats">
+              1.4M views &#183; 4 years ago
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="video-preview">
+        <div class="thumbnail-row">
+          <a href="https://www.youtube.com/watch?v=zTDgziJC-q8">
+            <img class="thumbnail" src="https://supersimple.dev/public/img/exercises/youtube/thumbnails/thumbnail-7.webp">
+          </a>
+          <div class="video-time">
+            12:57
+          </div>
+        </div>
+        <div class="video-info-grid">
+          <div class="channel-picture">
+            <a href="https://www.youtube.com/@RealLifeLore">
+              <img class="profile-picture" src="https://supersimple.dev/public/img/exercises/youtube/channel-profile-pics/channel-7.jpeg">
+            </a>
+          </div>
+          <div class="video-info">
+            <p class="video-title">
+              Why Planes Don't Fly Over Tibet
+            </p>
+            <p class="video-author">
+              RealLifeLore
+            </p>
+            <p class="video-stats">
+              8.3M views &#183; 3 years ago
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="video-preview">
+        <div class="thumbnail-row">
+          <a href="https://www.youtube.com/watch?v=zTDgziJC-q8">
+            <img class="thumbnail" src="https://i.ytimg.com/vi/XBu54nfzxAQ/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCj0AUMCHGjDs8OgjBvkSc2DkHqng">
+          </a>
+          <div class="video-time">
+            12:58
+          </div>
+        </div>
+        <div class="video-info-grid">
+          <div class="channel-picture">
+            <a href="https://www.youtube.com/@SuperSimpleDev">
+              <img class="profile-picture" src="https://yt3.ggpht.com/ytc/AOPolaRu3zcJ4_fybe-8GJUmrGzc2S6xYsxw0HgMnfnI=s68-c-k-c0x00ffffff-no-rj">
+            </a>
+          </div>
+          <div class="video-info">
+            <p class="video-title">
+              Backend web development - a complete overview
+            </p>
+            <p class="video-author">
+              SuperSimpleDev
+            </p>
+            <p class="video-stats">
+              1.3M views &#183; 1 year ago
+            </p>
+          </div>
+        </div>
+      </div>
+      
+          
+    </div>
+  </body>
+</html>
